@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+## Personal Expense Tracker
+Aplikasi web untuk mencatat dan melacak pengeluaran pribadi harian, dibangun menggunakan React dan TypeScript dengan tampilan dark mode yang bersih.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi ini mendemonstrasikan bagaimana data dapat mengalir antar komponen (Induk ke Anak dan Anak ke Induk) untuk menciptakan pembaruan tampilan yang dinamis.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Aplikasi ini dibagi menjadi tiga komponen utama yang saling berinteraksi:
 
-## React Compiler
+App.tsx (Root/Induk)
+Peran Utama: Berfungsi sebagai state manager sentral. Menyimpan state utama untuk daftar pengeluaran (expenses).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Logika: Bertanggung jawab untuk fungsi penambahan dan penghapusan data pengeluaran.
 
-## Expanding the ESLint configuration
+Interaksi: Meneruskan data (expenses) ke ExpenseSummary dan meneruskan fungsi callback (handleAddExpense) ke ExpenseInput.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+ExpenseInput.tsx (Input Form)
+Peran Utama: Menyediakan antarmuka form untuk entri pengeluaran baru (Deskripsi, Jumlah, Kategori).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Logika: Mengelola state lokal (state terkontrol) untuk nilai input form saat ini.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Interaksi: Menggunakan props (berupa fungsi callback) untuk mengirim data yang telah diinput kembali ke komponen App.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+ExpenseSummary.tsx (Ringkasan & Tampilan)
+Peran Utama: Menampilkan ringkasan total pengeluaran dan daftar transaksi yang sudah dicatat.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Logika: Melakukan perhitungan total pengeluaran secara dinamis menggunakan data yang diterima.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Interaksi: Menerima array data pengeluaran (expenses) melalui props dari App dan me-render tampilan daftar.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Baik, saya mengerti. Anda tidak ingin format tabel untuk bagian "Letak Penggunaan Props dan State".
+
+Berikut adalah daftar poin (`*`) yang menjelaskan penggunaan **Props dan State**, disusun tanpa menggunakan format tabel, siap untuk dimasukkan ke dalam file `README.md` Anda.
+
+
+
+## Letak Penggunaan Props dan State
+
+* STATE Utama (`expenses`)**: Disimpan di komponen **`App.tsx`**. State ini menyimpan seluruh *array* data pengeluaran. Setiap penambahan atau penghapusan item akan mengubah *state* ini, memicu pembaruan dinamis pada `ExpenseSummary`.
+* STATE Lokal (`description`, `amount`, `category`)**: Disimpan di komponen **`ExpenseInput.tsx`**. State ini hanya digunakan untuk mengontrol nilai *input form* saat pengguna mengetik, sebelum data disubmit ke *state* utama.
+* PROPS (Pengiriman Fungsi)**: Fungsi `onAddExpense` dan `onDeleteExpense` dikirim dari **`App`** ke komponen anaknya (`ExpenseInput` dan `ExpenseSummary`). Fungsi-fungsi ini adalah *callback* yang memungkinkan komponen anak memanggilnya untuk mengubah *state* utama di induk.
+* PROPS (Pengiriman Data)**: Data `expenses` (data *array* pengeluaran) dikirim dari **`App.tsx`** ke **`ExpenseSummary.tsx`**. Ini adalah bagaimana `ExpenseSummary` menerima data terbaru untuk di-*render* sebagai daftar transaksi dan total biaya.
