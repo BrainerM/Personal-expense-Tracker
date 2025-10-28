@@ -1,0 +1,274 @@
+/* src/index.css */
+
+/* --- 1. Variabel Warna Dark Mode --- */
+:root {
+    --color-primary: #5882ff; /* Biru terang untuk tombol dan highlight */
+    --color-expense: #ff7676; /* Merah terang untuk pengeluaran */
+    --color-background: #1e2738; /* Latar belakang gelap utama */
+    --color-card-bg: #2d3b51; /* Warna card/container lebih terang dari background */
+    --color-text-light: #e0e7ff; /* Teks terang */
+    --color-text-secondary: #9aa5b6; /* Teks sekunder */
+    --color-input-bg: #37475d; /* Latar belakang input */
+    --color-border: #44566c; /* Garis tepi */
+    --shadow-main: 0 8px 16px rgba(0, 0, 0, 0.4); /* Bayangan yang lebih kuat */
+}
+
+/* --- 2. Reset Dasar dan Tata Letak Utama --- */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text-light); 
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.main-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.main-header h1 {
+    color: var(--color-text-light);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 32px;
+}
+
+@media (min-width: 1024px) {
+    .grid-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* --- 3. Card Styling (Umum) --- */
+.card {
+    background-color: var(--color-card-bg); 
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-main);
+    border: 1px solid var(--color-border);
+}
+
+.card h3, .card h4 {
+    color: var(--color-text-light);
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* --- 4. Form Input Styling --- */
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+    margin-bottom: 4px;
+}
+
+/* 4a. Layout Grid Input (Perbaikan Layout Rapi) */
+.form-group-grid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 16px; 
+    margin-bottom: 20px;
+}
+
+@media (min-width: 640px) {
+    .form-group-grid {
+        /* DESKRIPSI (2) | JUMLAH (1) | KATEGORI (1) */
+        grid-template-columns: 2fr 1fr 1fr; 
+        align-items: end;
+    }
+}
+
+.form-action {
+    padding-top: 5px; 
+}
+
+/* 4b. Form Control General */
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: var(--color-input-bg);
+    color: var(--color-text-light); 
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(88, 130, 255, 0.5); 
+}
+
+/* 4c. Perbaikan Khusus Select/Option */
+.form-control option {
+    background-color: var(--color-card-bg); 
+    color: var(--color-text-light); 
+}
+
+/* 4d. Tombol Submit */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--color-primary);
+    color: var(--color-card-bg); 
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #6a95ff;
+}
+
+/* --- 5. Summary & List Styling --- */
+.summary-box {
+    padding: 16px;
+    background-color: var(--color-input-bg);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    margin-bottom: 24px;
+}
+
+.summary-box p {
+    margin: 0;
+    color: var(--color-text-light);
+}
+
+.total-amount {
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: var(--color-expense);
+    margin-top: 4px;
+}
+
+/* 5a. Header List (Table Header) */
+.transaction-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background-color: var(--color-input-bg);
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 4px 4px 0 0;
+    text-transform: uppercase;
+    margin-top: 16px;
+}
+
+/* Penentuan lebar kolom header */
+.transaction-header > span:nth-child(1) { width: 45%; } /* DESKRIPSI */
+.transaction-header > span:nth-child(2) { width: 25%; } /* KATEGORI */
+.transaction-header > span:nth-child(3) { width: 30%; text-align: right; } /* JUMLAH */
+
+/* 5b. Daftar Transaksi */
+.transaction-list {
+    max-height: 384px; 
+    overflow-y: auto;
+    padding-right: 8px;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background-color: var(--color-input-bg);
+    border-radius: 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.2s ease;
+}
+
+.transaction-item:hover {
+    background-color: #3f516a;
+}
+
+/* Penentuan lebar kolom item list */
+.item-desc-col { 
+    width: 45%; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    color: var(--color-text-light);
+}
+
+.item-category-col {
+    width: 25%;
+    display: flex; 
+    align-items: center;
+}
+
+.item-amount-col { 
+    width: 30%; 
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+}
+
+.item-amount { 
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: var(--color-expense);
+    margin-right: 10px; 
+    text-align: right; 
+    flex-grow: 1; 
+}
+
+.item-category {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* 5c. Warna Kategori (Kontras untuk Dark Mode) */
+.category-Makanan { background-color: #79551c; color: #ffeb3b; } /* Kuning Tua */
+.category-Transportasi { background-color: #19524e; color: #4db6ac; } /* Teal Tua */
+.category-Tagihan { background-color: #922b2b; color: #f5b7b1; } /* Merah Bata */
+.category-Hiburan { background-color: #5b2c6f; color: #e8daef; } /* Ungu Tua */
+.category-Lainnya { background-color: #4a4a4a; color: #d5d5d5; } /* Abu-abu */
+
+/* 5d. Tombol Hapus */
+.btn-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    transition: color 0.2s ease;
+}
+
+.btn-delete:hover {
+    color: var(--color-expense);
+}
+
+/* 5e. Styling Scrollbar */
+.transaction-list::-webkit-scrollbar {
+    width: 6px;
+}
+.transaction-list::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 10px;
+}
+.transaction-list::-webkit-scrollbar-track {
+    background: var(--color-card-bg);
+}

@@ -1,0 +1,140 @@
+/* src/index.css atau src/App.css */
+
+/* --- Variabel dan Reset Dasar --- */
+:root {
+    --color-primary: #1e3a8a; /* Biru Tua */
+    --color-expense: #dc2626; /* Merah */
+    --color-background: #f3f4f6; /* Abu-abu terang */
+    --shadow-main: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-background);
+}
+
+/* --- Container dan Heading --- */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.main-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.main-header h1 {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+@media (min-width: 1024px) {
+    .grid-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* --- Card Styling (Umum) --- */
+.card {
+    background-color: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    border: 1px solid #e5e7eb;
+}
+
+/* --- Form Input Styling --- */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 4px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.3);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: var(--color-primary);
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #1e40af;
+}
+
+/* --- Summary & List Styling --- */
+.summary-box {
+    padding: 16px;
+    background-color: #fee2e2; /* Merah Sangat Muda */
+    border-radius: 8px;
+    border: 1px solid #fca5a5;
+    margin-bottom: 24px;
+}
+
+.summary-box p {
+    margin: 0;
+}
+
+.total-amount {
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: var(--color-expense);
+    margin-top: 4px;
+}
+
+.transaction-list {
+    max-height: 384px; /* Untuk scroll */
+    overflow-y: auto;
+    padding-right: 8px;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 16px;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #f3f4f6;
+    margin-bottom: 8px;
+    transition: background-color 0.2s ease;
+}
