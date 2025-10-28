@@ -27,10 +27,6 @@ Logika: Melakukan perhitungan total pengeluaran secara dinamis menggunakan data 
 
 Interaksi: Menerima array data pengeluaran (expenses) melalui props dari App dan me-render tampilan daftar.
 
-Baik, saya mengerti. Anda tidak ingin format tabel untuk bagian "Letak Penggunaan Props dan State".
-
-Berikut adalah daftar poin (`*`) yang menjelaskan penggunaan **Props dan State**, disusun tanpa menggunakan format tabel, siap untuk dimasukkan ke dalam file `README.md` Anda.
-
 
 
 ## Letak Penggunaan Props dan State
